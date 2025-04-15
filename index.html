@@ -1,53 +1,119 @@
-<style>
-  body {
-    font-family: sans-serif;
-    background: #111;
-    color: #fff;
-    text-align: center;
-    margin: 0;
-  }
-  .filters {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 1em;
-  }
-  .filters button {
-    background: #333;
-    color: white;
-    margin: 5px;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  .filters button:hover {
-    background: #555;
-  }
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 1em;
-    padding: 1em;
-  }
-  .card a {
-    display: block;
-    transition: transform 0.2s ease, filter 0.2s ease;
-  }
-  .card a:hover {
-    transform: scale(1.05);
-    filter: brightness(1.2);
-  }
-  .card img {
-    width: 100%;
-    border-radius: 10px;
-    border: 2px solid #444;
-    cursor: pointer;
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trading Card Archive</title>
+  <link href="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/css/lightbox.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #111;
+      color: #fff;
+      text-align: center;
+      margin: 0;
+    }
+    .filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 1em;
+    }
+    .filters button {
+      background: #333;
+      color: white;
+      margin: 5px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .filters button:hover {
+      background: #555;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1em;
+      padding: 1em;
+    }
+    .card a {
+      display: block;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+    .card a:hover {
+      transform: scale(1.05);
+      filter: brightness(1.2);
+    }
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      border: 2px solid #444;
+      cursor: pointer;
+    }
 
-  /* Lightbox custom tweaks (optional) */
-  .lightboxOverlay {
-    background: rgba(0, 0, 0, 0.95) !important;
-  }
-</style>
+    .lightboxOverlay {
+      background: rgba(0, 0, 0, 0.95) !important;
+    }
+  </style>
+</head>
+<body>
+  <h1>Trading Card Archive</h1>
+  <div class="filters">
+    <button data-color="all">All</button>
+    <button data-color="white">⚪ White</button>
+    <button data-color="blue">🔵 Blue</button>
+    <button data-color="black">⚫ Black</button>
+    <button data-color="red">🔴 Red</button>
+    <button data-color="green">🟢 Green</button>
+  </div>
+  <div class="cards" id="cardContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/js/lightbox-plus-jquery.min.js"></script>
+  <script>
+    const container = document.getElementById('cardContainer');
+
+    const cards = [];
+
+    for (let i = 1; i <= 213; i++) {
+      let color = '';
+      if (i <= 40) color = 'white';
+      else if (i <= 80) color = 'blue';
+      else if (i <= 120) color = 'black';
+      else if (i <= 160) color = 'red';
+      else color = 'green';
+
+      cards.push({
+        id: i,
+        image: `cards/tca_${i}.jpg`,
+        color: color
+      });
+    }
+
+    function displayCards(filterColor) {
+      container.innerHTML = '';
+      const filtered = filterColor === 'all' ? cards : cards.filter(c => c.color === filterColor);
+      for (let card of filtered) {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+          <a href="${card.image}" data-lightbox="tca" data-title="Card ${card.id}">
+            <img src="${card.image}" alt="Card ${card.id}">
+          </a>
+        `;
+        container.appendChild(div);
+      }
+    }
+
+    document.querySelectorAll('.filters button').forEach(button => {
+      button.addEventListener('click', () => {
+        const color = button.getAttribute('data-color');
+        displayCards(color);
+      });
+    });
+
+    // Show all cards on load
+    displayCards('all');
+  </script>
+</body>
+</html>
