@@ -1,87 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Trading Card Archive</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #111;
-      color: #fff;
-      text-align: center;
-      margin: 0;
-    }
-    .filters {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 1em;
-    }
-    .filters button {
-      background: #333;
-      color: white;
-      margin: 5px;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .filters button:hover {
-      background: #555;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 1em;
-      padding: 1em;
-    }
-    .card img {
-      width: 100%;
-      border-radius: 10px;
-      border: 2px solid #444;
-    }
-  </style>
-</head>
-<body>
-  <h1>Trading Card Archive</h1>
-  <div class="filters">
-    <button data-color="all">All</button>
-    <button data-color="white">⚪ White</button>
-    <button data-color="blue">🔵 Blue</button>
-    <button data-color="black">⚫ Black</button>
-    <button data-color="red">🔴 Red</button>
-    <button data-color="green">🟢 Green</button>
-  </div>
-  <div class="cards" id="cardContainer"></div>
-
-  <script>
-    let cards = [];
-    const container = document.getElementById('cardContainer');
-
-    fetch('cards.json')
-      .then(res => res.json())
-      .then(data => {
-        cards = data;
-        displayCards('all');
-      });
-
-    function displayCards(filterColor) {
-      container.innerHTML = '';
-      const filtered = filterColor === 'all' ? cards : cards.filter(c => c.color === filterColor);
-      for (let card of filtered) {
-        const div = document.createElement('div');
-        div.className = 'card';
-        div.innerHTML = `<img src="${card.image}" alt="">`;
-        container.appendChild(div);
-      }
-    }
-
-    document.querySelectorAll('.filters button').forEach(button => {
-      button.addEventListener('click', () => {
-        const color = button.getAttribute('data-color');
-        displayCards(color);
-      });
-    });
-  </script>
-</body>
-</html>
+[
+  {"image": "tca_.1.png", "color": "white"},
+  {"image": "tca_.2.png", "color": "white"},
+  {"image": "tca_.3.png", "color": "white"},
+  {"image": "tca_.4.png", "color": "white"},
+  {"image": "tca_.5.png", "color": "white"},
+  {"image": "tca_.6.png", "color": "white"},
+  {"image": "tca_.7.png", "color": "white"},
+  {"image": "tca_.8.png", "color": "white"},
+  {"image": "tca_.9.png", "color": "white"},
+  {"image": "tca_.10.png", "color": "white"},
+  {"image": "tca_.11.png", "color": "white"},
+  {"image": "tca_.12.png", "color": "white"},
+  {"image": "tca_.13.png", "color": "white"},
+  {"image": "tca_.14.png", "color": "white"},
+  {"image": "tca_.15.png", "color": "white"},
+  {"image": "tca_.16.png", "color": "white"},
+  {"image": "tca_.17.png", "color": "white"},
+  {"image": "tca_.18.png", "color": "white"},
+  {"image": "tca_.19.png", "color": "white"},
+  {"image": "tca_.20.png", "color": "white"},
+  {"image": "tca_.21.png", "color": "white"},
+  {"image": "tca_.22.png", "color": "white"},
+  {"image": "tca_.23.png", "color": "white"},
+  {"image": "tca_.24.png", "color": "white"},
+  {"image": "tca_.25.png", "color": "white"},
+  {"image": "tca_.26.png", "color": "white"},
+  {"image": "tca_.27.png", "color": "white"},
+  {"image": "tca_.28.png", "color": "white"},
+  {"image": "tca_.29.png", "color": "white"},
+  {"image": "tca_.30.png", "color": "blue"},
+  {"image": "tca_.31.png", "color": "blue"},
+  {"image": "tca_.32.png", "color": "blue"},
+  {"image": "tca_.33.png", "color": "blue"},
+  {"image": "tca_.34.png", "color": "blue"},
+  {"image": "tca_.35.png", "color": "blue"},
+  {"image": "tca_.36.png", "color": "blue"},
+  {"image": "tca_.37.png", "color": "blue"},
+  {"image": "tca_.38.png", "color": "blue"},
+  {"image": "tca_.39.png", "color": "blue"},
+  {"image": "tca_.40.png", "color": "blue"},
+  {"image": "tca_.41.png", "color": "blue"},
+  {"image": "tca_.42.png", "color": "blue"},
+  {"image": "tca_.43.png", "color": "blue"},
+  {"image": "tca_.44.png", "color": "blue"},
+  {"image": "tca_.45.png", "color": "blue"},
+  {"image": "tca_.46.png", "color": "blue"},
+  {"image": "tca_.47.png", "color": "blue"},
+  {"image": "tca_.48.png", "color": "blue"},
+  {"image": "tca_.49.png", "color": "blue"},
+  {"image": "tca_.50.png", "color": "blue"},
+  {"image": "tca_.51.png", "color": "blue"},
+  {"image": "tca_.52.png", "color": "blue"},
+  {"image": "tca_.53.png", "color": "blue"},
+  {"image": "tca_.54.png", "color": "blue"},
+  {"image": "tca_.55.png", "color": "blue"},
+  {"image": "tca_.56.png", "color": "blue"},
+  {"image": "tca_.57.png", "color": "blue"},
+  {"image": "tca
